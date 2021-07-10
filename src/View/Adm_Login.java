@@ -148,8 +148,6 @@ public class Adm_Login extends javax.swing.JFrame {
 
     private void loginbutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginbutActionPerformed
         // TODO add your handling code here:
-        new Adm_Dashboard().setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_loginbutActionPerformed
 
     private void CancleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancleActionPerformed
