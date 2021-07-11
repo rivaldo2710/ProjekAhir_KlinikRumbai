@@ -25,7 +25,7 @@ public class Adm_Login extends javax.swing.JFrame {
     public Adm_Login() throws SQLException {
         initComponents();
         Koneksi DB = new Koneksi();
-        DB.configDB();
+        Koneksi.configDB();
         con = DB.con;
         stat = DB.stm;
     }
@@ -60,16 +60,16 @@ public class Adm_Login extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Asstets/img/Doc1-removebg-preview.png"))); // NOI18N
         jLabel1.setText("Klinik Rumbai ");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 250, 70));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 250, 70));
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel2.setText("Login Page");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, -1, -1));
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 430, 10));
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel3.setText("Username ");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 85, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 85, -1));
 
         username.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         username.addActionListener(new java.awt.event.ActionListener() {
@@ -77,14 +77,14 @@ public class Adm_Login extends javax.swing.JFrame {
                 usernameActionPerformed(evt);
             }
         });
-        getContentPane().add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 230, -1));
+        getContentPane().add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 230, -1));
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel4.setText("Password");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 85, -1));
 
         jPasswordField1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 230, -1));
+        getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, 230, -1));
 
         jcAdm.setBackground(new java.awt.Color(255, 255, 255));
         jcAdm.setText("Show Password");
@@ -113,8 +113,8 @@ public class Adm_Login extends javax.swing.JFrame {
         });
         getContentPane().add(Cancle, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 280, -1, -1));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Asstets/img/bg.jpg"))); // NOI18N
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, -1, -1));
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Asstets/img/bg-log.jpg"))); // NOI18N
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -191,14 +191,10 @@ public class Adm_Login extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    new Adm_Login().setVisible(true);
-                } catch (SQLException ex) {
-                    Logger.getLogger(Adm_Login.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        java.awt.EventQueue.invokeLater(() -> {
+            try {
+                new Adm_Login().setVisible(true);
+            } catch (SQLException ex) {
             }
         });
     }
