@@ -159,17 +159,15 @@ public class Adm_Tampil extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jp_button = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jSeparator2 = new javax.swing.JSeparator();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
         jPanel1 = new javax.swing.JPanel();
         jpPasien = new javax.swing.JPanel();
         jpPjudul = new javax.swing.JPanel();
@@ -210,8 +208,22 @@ public class Adm_Tampil extends javax.swing.JFrame {
         jpAtable = new javax.swing.JPanel();
         tAppoint = new javax.swing.JScrollPane();
         tAppointment = new javax.swing.JTable();
+        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Asstets/img/Doc1-removebg-preview.png"))); // NOI18N
+        jLabel1.setText("Klinik Rumbai ");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jLabel2.setText("Admin Dashboard");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, -1, -1));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 1040, 10));
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel3.setText("Menu");
@@ -265,48 +277,30 @@ public class Adm_Tampil extends javax.swing.JFrame {
                         .addGap(69, 69, 69)
                         .addComponent(jLabel3)))
                 .addContainerGap(21, Short.MAX_VALUE))
-            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel3)
-                .addGap(6, 6, 6)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(34, 34, 34)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addComponent(jButton4)
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout jp_buttonLayout = new javax.swing.GroupLayout(jp_button);
-        jp_button.setLayout(jp_buttonLayout);
-        jp_buttonLayout.setHorizontalGroup(
-            jp_buttonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jp_buttonLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
-        );
-        jp_buttonLayout.setVerticalGroup(
-            jp_buttonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jp_buttonLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(60, Short.MAX_VALUE))
-        );
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, -1, 290));
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
-        jLabel1.setText("Klinik Rumbai ");
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jLabel2.setText("Admin Dashboard");
+        jpPasien.setBackground(new java.awt.Color(255, 255, 255));
+
+        jpPjudul.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel4.setText("Update data Riwayat Pengobatan");
@@ -327,6 +321,8 @@ public class Adm_Tampil extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addContainerGap())
         );
+
+        jpPform.setBackground(new java.awt.Color(255, 255, 255));
 
         jtnopass.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jtnopass.addActionListener(new java.awt.event.ActionListener() {
@@ -421,6 +417,8 @@ public class Adm_Tampil extends javax.swing.JFrame {
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
+        jpPtable.setBackground(new java.awt.Color(255, 255, 255));
+
         tPasien.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         tPasien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -485,6 +483,10 @@ public class Adm_Tampil extends javax.swing.JFrame {
                 .addComponent(jpPtable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jpDokter.setBackground(new java.awt.Color(255, 255, 255));
+
+        jpDjudul.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel16.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel16.setText("Nama Dokter");
@@ -589,6 +591,8 @@ public class Adm_Tampil extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jpDform.setBackground(new java.awt.Color(255, 255, 255));
+
         tDokter1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         tDokter1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -624,8 +628,9 @@ public class Adm_Tampil extends javax.swing.JFrame {
         jpDformLayout.setHorizontalGroup(
             jpDformLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpDformLayout.createSequentialGroup()
-                .addGap(0, 74, Short.MAX_VALUE)
-                .addComponent(tDokter, javax.swing.GroupLayout.PREFERRED_SIZE, 646, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(88, Short.MAX_VALUE)
+                .addComponent(tDokter, javax.swing.GroupLayout.PREFERRED_SIZE, 646, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(59, 59, 59))
         );
         jpDformLayout.setVerticalGroup(
             jpDformLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -634,6 +639,8 @@ public class Adm_Tampil extends javax.swing.JFrame {
                 .addComponent(tDokter, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(46, Short.MAX_VALUE))
         );
+
+        jpDtable.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel5.setText("Update atau Tambah data Dokter");
@@ -666,9 +673,9 @@ public class Adm_Tampil extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpDokterLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jpDokterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jpDform, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpDjudul, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29))
+                    .addComponent(jpDjudul, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jpDform, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         jpDokterLayout.setVerticalGroup(
             jpDokterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -681,6 +688,10 @@ public class Adm_Tampil extends javax.swing.JFrame {
                 .addComponent(jpDform, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        jpAppointment.setBackground(new java.awt.Color(255, 255, 255));
+
+        jpAjudul.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel10.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel10.setText("Lihat Data Appointment");
@@ -701,6 +712,8 @@ public class Adm_Tampil extends javax.swing.JFrame {
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
+
+        jpAtable.setBackground(new java.awt.Color(255, 255, 255));
 
         tAppointment.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         tAppointment.setModel(new javax.swing.table.DefaultTableModel(
@@ -759,7 +772,7 @@ public class Adm_Tampil extends javax.swing.JFrame {
                 .addComponent(jpAjudul, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addComponent(jpAtable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -777,21 +790,21 @@ public class Adm_Tampil extends javax.swing.JFrame {
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGap(0, 20, Short.MAX_VALUE)
                     .addComponent(jpAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 21, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jpPasien, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(16, 16, 16)
                     .addComponent(jpDokter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(83, Short.MAX_VALUE)))
+                    .addContainerGap(40, Short.MAX_VALUE)))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
@@ -799,97 +812,13 @@ public class Adm_Tampil extends javax.swing.JFrame {
                     .addContainerGap()))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jp_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addGap(24, 24, 24)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jp_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(35, Short.MAX_VALUE))
-        );
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(262, 176, 810, 470));
+
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Asstets/img/bg-dash.jpg"))); // NOI18N
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        jpPasien.setVisible(true);
-        jpPjudul.setVisible(true);
-        jpPform.setVisible(true);
-        jpPtable.setVisible(true);
-        jpDokter.setVisible(false);
-        jpDjudul.setVisible(false);
-        jpDform.setVisible(false);
-        jpDtable.setVisible(false);
-        jpAppointment.setVisible(false);
-        jpAjudul.setVisible(false);
-        jpAtable.setVisible(false);
-        TampilDataPasien();
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        jpPasien.setVisible(false);
-        jpPjudul.setVisible(false);
-        jpPform.setVisible(false);
-        jpPtable.setVisible(false);
-        jpDokter.setVisible(true);
-        jpDjudul.setVisible(true);
-        jpDform.setVisible(true);
-        jpDtable.setVisible(true);
-        jpAppointment.setVisible(false);
-        jpAjudul.setVisible(false);
-        jpAtable.setVisible(false);
-        TampilDataDokter();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        jpPasien.setVisible(false);
-        jpPjudul.setVisible(false);
-        jpPform.setVisible(false);
-        jpPtable.setVisible(false);
-        jpDokter.setVisible(false);
-        jpDjudul.setVisible(false);
-        jpDform.setVisible(false);
-        jpDtable.setVisible(false);
-        jpAppointment.setVisible(true);
-        jpAjudul.setVisible(true);
-        jpAtable.setVisible(true);
-        TampilDataAppointment();
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jtiddokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtiddokActionPerformed
         // TODO add your handling code here:
@@ -1016,6 +945,59 @@ public class Adm_Tampil extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jbDuppActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        jpPasien.setVisible(false);
+        jpPjudul.setVisible(false);
+        jpPform.setVisible(false);
+        jpPtable.setVisible(false);
+        jpDokter.setVisible(false);
+        jpDjudul.setVisible(false);
+        jpDform.setVisible(false);
+        jpDtable.setVisible(false);
+        jpAppointment.setVisible(true);
+        jpAjudul.setVisible(true);
+        jpAtable.setVisible(true);
+        TampilDataAppointment();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        jpPasien.setVisible(false);
+        jpPjudul.setVisible(false);
+        jpPform.setVisible(false);
+        jpPtable.setVisible(false);
+        jpDokter.setVisible(true);
+        jpDjudul.setVisible(true);
+        jpDform.setVisible(true);
+        jpDtable.setVisible(true);
+        jpAppointment.setVisible(false);
+        jpAjudul.setVisible(false);
+        jpAtable.setVisible(false);
+        TampilDataDokter();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        jpPasien.setVisible(true);
+        jpPjudul.setVisible(true);
+        jpPform.setVisible(true);
+        jpPtable.setVisible(true);
+        jpDokter.setVisible(false);
+        jpDjudul.setVisible(false);
+        jpDform.setVisible(false);
+        jpDtable.setVisible(false);
+        jpAppointment.setVisible(false);
+        jpAjudul.setVisible(false);
+        jpAtable.setVisible(false);
+        TampilDataPasien();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1056,6 +1038,7 @@ public class Adm_Tampil extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
@@ -1072,7 +1055,6 @@ public class Adm_Tampil extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JButton jbDsubb;
     private javax.swing.JButton jbDupp;
     private javax.swing.JButton jbPupp;
@@ -1089,7 +1071,6 @@ public class Adm_Tampil extends javax.swing.JFrame {
     private javax.swing.JPanel jpPform;
     private javax.swing.JPanel jpPjudul;
     private javax.swing.JPanel jpPtable;
-    private javax.swing.JPanel jp_button;
     private javax.swing.JTextField jtiddok;
     private javax.swing.JTextField jtjbdok;
     private javax.swing.JTextField jtnadok;
