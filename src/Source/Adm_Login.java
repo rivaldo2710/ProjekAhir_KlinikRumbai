@@ -3,21 +3,36 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Model;
+package Source;
 
-/**
- *
- * @author HP
- */
+import java.awt.HeadlessException;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 public class Adm_Login extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Adm_Login
-     */
-    public Adm_Login() {
+    Connection con;
+    Statement stat;
+    ResultSet rs;
+    String sql;
+    
+    public Adm_Login() throws SQLException {
         initComponents();
+        Koneksi DB = new Koneksi();
+        DB.configDB();
+        con = DB.con;
+        stat = DB.stm;
     }
-
+    
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,11 +46,12 @@ public class Adm_Login extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
-        pass = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         username = new javax.swing.JTextField();
         loginbut = new javax.swing.JButton();
         Cancle = new javax.swing.JButton();
+        jPasswordField1 = new javax.swing.JPasswordField();
+        jcAdm = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,13 +63,6 @@ public class Adm_Login extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel3.setText("Username ");
-
-        pass.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        pass.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passActionPerformed(evt);
-            }
-        });
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel4.setText("Password");
@@ -81,6 +90,15 @@ public class Adm_Login extends javax.swing.JFrame {
             }
         });
 
+        jPasswordField1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+
+        jcAdm.setText("Show Password");
+        jcAdm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcAdmActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -89,21 +107,24 @@ public class Adm_Login extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(username, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
-                            .addComponent(pass)))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(108, 108, 108)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(174, 174, 174)
-                        .addComponent(jLabel2)))
-                .addContainerGap(71, Short.MAX_VALUE))
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jcAdm)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(username, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
+                                    .addComponent(jPasswordField1))))))
+                .addContainerGap(65, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(loginbut)
@@ -127,20 +148,18 @@ public class Adm_Login extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(65, 65, 65)
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jcAdm)
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(loginbut)
                     .addComponent(Cancle))
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passActionPerformed
 
     private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
         // TODO add your handling code here:
@@ -148,11 +167,43 @@ public class Adm_Login extends javax.swing.JFrame {
 
     private void loginbutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginbutActionPerformed
         // TODO add your handling code here:
+         
+        try {
+            String sql = "SELECT * FROM admin WHERE username = '" + username.getText() + "' AND password = '" + jPasswordField1.getPassword() + "'";
+            System.out.println(sql);
+            java.sql.Connection conn=(Connection)Koneksi.configDB();
+            Statement st = Koneksi.configDB().createStatement();
+            ResultSet rsLogin = st.executeQuery(sql);
+ 
+            rsLogin.next();
+            rsLogin.last(); //mengecek jumlah baris pada hasil query
+            if (rsLogin.getRow()==1){
+                JOptionPane.showMessageDialog(null, "Login Berhasil!");
+                new Adm_Tampil().setVisible(true);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Maaf, Username / Password salah!");
+                jPasswordField1.setText("");
+                jPasswordField1.requestFocus();
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
     }//GEN-LAST:event_loginbutActionPerformed
 
     private void CancleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancleActionPerformed
         // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_CancleActionPerformed
+
+    private void jcAdmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcAdmActionPerformed
+        // TODO add your handling code here:
+        if(jcAdm.isSelected()){
+            jPasswordField1.setEchoChar((char)0);
+        }else{
+            jPasswordField1.setEchoChar('*');
+        }
+    }//GEN-LAST:event_jcAdmActionPerformed
 
     /**
      * @param args the command line arguments
@@ -183,8 +234,13 @@ public class Adm_Login extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
-                new Adm_Login().setVisible(true);
+                try {
+                    new Adm_Login().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Adm_Login.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -195,9 +251,10 @@ public class Adm_Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JCheckBox jcAdm;
     private javax.swing.JButton loginbut;
-    private javax.swing.JTextField pass;
     private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
 }

@@ -3,17 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package View;
 
-/**
- *
- * @author HP
- */
+package Source;
+
+import java.awt.HeadlessException;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 public class Adm_Tampil extends javax.swing.JFrame {
 
     public Adm_Tampil() {
         initComponents();
         tampilan();
+        KosongFormpass();
     }
     
     public void tampilan(){
@@ -27,10 +32,124 @@ public class Adm_Tampil extends javax.swing.JFrame {
         jpDtable.setVisible(false);
         jpAppointment.setVisible(false);
         jpAjudul.setVisible(false);
-        jpAform.setVisible(false);
         jpAtable.setVisible(false);
+        TampilDataPasien();
+    }
+    
+    public void TampilDataPasien(){
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("No");
+        model.addColumn("No Pasien");
+        model.addColumn("Nama Pasien");
+        model.addColumn("Usia Pasien");
+        model.addColumn("Jenis Kelamin");
+        model.addColumn("Tanggal pengobatan");
+    
+        //Menampilkan data pada database ke dalam tabel
+        try {
+            int no=1;
+            String sql="SELECT * FROM pasien";
+            java.sql.Connection conn=(Connection)Koneksi.configDB();
+            
+            java.sql.Statement stm=conn.createStatement();
+            
+            java.sql.ResultSet res=stm.executeQuery(sql);
+            
+           while (res.next()){
+           model.addRow(new Object[]{
+               res.getString(1),
+                res.getString(2),
+                res.getString(3),
+                res.getString(4),
+                res.getString(5),
+                res.getString(6)});
+            }
+            tPasien.setModel(model);
+        
+        } catch(SQLException e){
+            System.out.println("Error " + e.getMessage());
+        }
+    }
+    
+    public void TampilDataDokter(){
+        DefaultTableModel model1 = new DefaultTableModel();
+        model1.addColumn("ID Dokter");
+        model1.addColumn("Nama Dokter");
+        model1.addColumn("Jenis Kelamin");
+        model1.addColumn("Jam bekerja");
+
+    
+        //Menampilkan data pada database ke dalam tabel
+        try {
+            int no=1;
+            String sql="SELECT * FROM Dokter";
+            java.sql.Connection conn=(Connection)Koneksi.configDB();
+            
+            java.sql.Statement stm=conn.createStatement();
+            
+            java.sql.ResultSet res=stm.executeQuery(sql);
+            
+           while (res.next()){
+           model1.addRow(new Object[]{
+               res.getString(1),
+                res.getString(2),
+                res.getString(3),
+                res.getString(4)});
+            }
+            tDokter1.setModel(model1);        
+        } catch(SQLException e){
+            System.out.println("Error " + e.getMessage());
+        }
+    }
+    
+    public void TampilDataAppointment(){
+        DefaultTableModel model1 = new DefaultTableModel();
+        model1.addColumn("ID Dokter");
+        model1.addColumn("No Pasien");
+        model1.addColumn("Nama Dokter");
+        model1.addColumn("Nama Pasien");
+        model1.addColumn("Keluhan");
+
+    
+        //Menampilkan data pada database ke dalam tabel
+        try {
+            int no=1;
+            String sql="SELECT * FROM appointment";
+            java.sql.Connection conn=(Connection)Koneksi.configDB();
+            
+            java.sql.Statement stm=conn.createStatement();
+            
+            java.sql.ResultSet res=stm.executeQuery(sql);
+            
+           while (res.next()){
+           model1.addRow(new Object[]{
+               res.getString(1),
+                res.getString(2),
+                res.getString(3),
+                res.getString(4),
+                res.getString(5)});
+            }
+            tAppointment.setModel(model1);        
+        } catch(SQLException e){
+            System.out.println("Error " + e.getMessage());
+        }
     }
 
+    public void KosongFormpass() {
+        jtnopass.setEditable(true);
+        jtnopass.setText(null);
+        jtnapass.setText(null);
+        jtuspass.setText(null);
+        jcjkpass.setSelectedItem(this);
+    }
+    
+    public void KosongFormdok() {
+        jtiddok.setEditable(true);
+        jtiddok.setText(null);
+        jtnadok.setText(null);
+        jtjbdok.setText(null);
+        jcjkdok.setSelectedItem(this);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,42 +175,40 @@ public class Adm_Tampil extends javax.swing.JFrame {
         jpPjudul = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jpPform = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        jtnopass = new javax.swing.JTextField();
+        jtnapass = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jtuspass = new javax.swing.JTextField();
+        jcjkpass = new javax.swing.JComboBox<>();
+        jbPupp = new javax.swing.JButton();
         jpPtable = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tPasien = new javax.swing.JTable();
         jpDokter = new javax.swing.JPanel();
         jpDjudul = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
+        jtnadok = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jTextField9 = new javax.swing.JTextField();
+        jcjkdok = new javax.swing.JComboBox<>();
+        jtiddok = new javax.swing.JTextField();
+        jbDupp = new javax.swing.JButton();
+        jbDsubb = new javax.swing.JButton();
+        jLabel18 = new javax.swing.JLabel();
+        jtjbdok = new javax.swing.JTextField();
         jpDform = new javax.swing.JPanel();
-        jScrollPane4 = new javax.swing.JScrollPane();
+        tDokter = new javax.swing.JScrollPane();
         tDokter1 = new javax.swing.JTable();
         jpDtable = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jpAppointment = new javax.swing.JPanel();
         jpAjudul = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
-        jpAform = new javax.swing.JPanel();
-        jTextField6 = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
         jpAtable = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        tAppoint = new javax.swing.JScrollPane();
         tAppointment = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -192,16 +309,16 @@ public class Adm_Tampil extends javax.swing.JFrame {
         jLabel2.setText("Admin Dashboard");
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jLabel4.setText("Update atau Tambah data Riwayat Pengobatan");
+        jLabel4.setText("Update data Riwayat Pengobatan");
 
         javax.swing.GroupLayout jpPjudulLayout = new javax.swing.GroupLayout(jpPjudul);
         jpPjudul.setLayout(jpPjudulLayout);
         jpPjudulLayout.setHorizontalGroup(
             jpPjudulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpPjudulLayout.createSequentialGroup()
-                .addGap(66, 66, 66)
+                .addGap(103, 103, 103)
                 .addComponent(jLabel4)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(136, Short.MAX_VALUE))
         );
         jpPjudulLayout.setVerticalGroup(
             jpPjudulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,17 +328,17 @@ public class Adm_Tampil extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTextField1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jtnopass.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jtnopass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jtnopassActionPerformed(evt);
             }
         });
 
-        jTextField2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        jtnapass.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jtnapass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                jtnapassActionPerformed(evt);
             }
         });
 
@@ -237,15 +354,23 @@ public class Adm_Tampil extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel9.setText("Jenis Kelamin");
 
-        jTextField3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        jtuspass.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jtuspass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                jtuspassActionPerformed(evt);
             }
         });
 
-        jComboBox1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcjkpass.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jcjkpass.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih ", "Pria", "Wanita" }));
+
+        jbPupp.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jbPupp.setText("Update");
+        jbPupp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbPuppActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpPformLayout = new javax.swing.GroupLayout(jpPform);
         jpPform.setLayout(jpPformLayout);
@@ -258,61 +383,61 @@ public class Adm_Tampil extends javax.swing.JFrame {
                     .addComponent(jLabel8))
                 .addGap(23, 23, 23)
                 .addGroup(jpPformLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
-                    .addComponent(jTextField2))
+                    .addComponent(jtnopass, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+                    .addComponent(jtnapass))
                 .addGap(18, 18, 18)
                 .addGroup(jpPformLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpPformLayout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addGap(29, 29, 29)
-                        .addComponent(jTextField3))
+                        .addComponent(jtuspass))
                     .addGroup(jpPformLayout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jcjkpass, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPformLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jbPupp)
+                .addGap(268, 268, 268))
         );
         jpPformLayout.setVerticalGroup(
             jpPformLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpPformLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(jpPformLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtnopass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtuspass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addGroup(jpPformLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtnapass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
                     .addComponent(jLabel9)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                    .addComponent(jcjkpass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jbPupp)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         tPasien.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         tPasien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "No Pasien", "Nama Pasien", "Usia Pasien", "Jenis Kelamin", "Tanggal Pengobatan"
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, true, true, true, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+        ));
+        tPasien.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tPasienMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tPasien);
@@ -330,8 +455,8 @@ public class Adm_Tampil extends javax.swing.JFrame {
             jpPtableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpPtableLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jpPasienLayout = new javax.swing.GroupLayout(jpPasien);
@@ -356,7 +481,7 @@ public class Adm_Tampil extends javax.swing.JFrame {
                 .addComponent(jpPjudul, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpPform, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(25, 25, 25)
                 .addComponent(jpPtable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -364,10 +489,10 @@ public class Adm_Tampil extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel16.setText("Nama Dokter");
 
-        jTextField10.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jTextField10.addActionListener(new java.awt.event.ActionListener() {
+        jtnadok.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jtnadok.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField10ActionPerformed(evt);
+                jtnadokActionPerformed(evt);
             }
         });
 
@@ -377,13 +502,39 @@ public class Adm_Tampil extends javax.swing.JFrame {
         jLabel17.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel17.setText("Jenis Kelamin");
 
-        jComboBox2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcjkdok.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jcjkdok.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih", "Pria", "Wanita" }));
 
-        jTextField9.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jTextField9.addActionListener(new java.awt.event.ActionListener() {
+        jtiddok.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jtiddok.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField9ActionPerformed(evt);
+                jtiddokActionPerformed(evt);
+            }
+        });
+
+        jbDupp.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jbDupp.setText("Update");
+        jbDupp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbDuppActionPerformed(evt);
+            }
+        });
+
+        jbDsubb.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jbDsubb.setText("Submit");
+        jbDsubb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbDsubbActionPerformed(evt);
+            }
+        });
+
+        jLabel18.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel18.setText("Jam Bekerja");
+
+        jtjbdok.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jtjbdok.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtjbdokActionPerformed(evt);
             }
         });
 
@@ -394,16 +545,26 @@ public class Adm_Tampil extends javax.swing.JFrame {
             .addGroup(jpDjudulLayout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addGroup(jpDjudulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel16)
-                    .addComponent(jLabel15))
-                .addGap(23, 23, 23)
-                .addGroup(jpDjudulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField9)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44)
-                .addComponent(jLabel17)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpDjudulLayout.createSequentialGroup()
+                        .addGroup(jpDjudulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel15))
+                        .addGap(23, 23, 23)
+                        .addGroup(jpDjudulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jtiddok)
+                            .addComponent(jtnadok, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(44, 44, 44))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpDjudulLayout.createSequentialGroup()
+                        .addComponent(jbDsubb)
+                        .addGap(46, 46, 46)))
+                .addGroup(jpDjudulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbDupp)
+                    .addComponent(jLabel18)
+                    .addComponent(jLabel17))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jpDjudulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jcjkdok, 0, 249, Short.MAX_VALUE)
+                    .addComponent(jtjbdok))
                 .addContainerGap(49, Short.MAX_VALUE))
         );
         jpDjudulLayout.setVerticalGroup(
@@ -411,59 +572,67 @@ public class Adm_Tampil extends javax.swing.JFrame {
             .addGroup(jpDjudulLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpDjudulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtiddok, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15)
                     .addComponent(jLabel17)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcjkdok, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
                 .addGroup(jpDjudulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                    .addComponent(jtnadok, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel18)
+                    .addComponent(jtjbdok, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addGroup(jpDjudulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbDupp)
+                    .addComponent(jbDsubb))
+                .addContainerGap())
         );
 
         tDokter1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         tDokter1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Id Dokter", "Nama Dokter", "Jenis Kelamin"
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, true, true
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class
             };
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
             }
         });
-        jScrollPane4.setViewportView(tDokter1);
+        tDokter1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tDokter1MouseClicked(evt);
+            }
+        });
+        tDokter.setViewportView(tDokter1);
 
         javax.swing.GroupLayout jpDformLayout = new javax.swing.GroupLayout(jpDform);
         jpDform.setLayout(jpDformLayout);
         jpDformLayout.setHorizontalGroup(
             jpDformLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpDformLayout.createSequentialGroup()
-                .addContainerGap(44, Short.MAX_VALUE)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 646, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
+                .addGap(0, 74, Short.MAX_VALUE)
+                .addComponent(tDokter, javax.swing.GroupLayout.PREFERRED_SIZE, 646, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jpDformLayout.setVerticalGroup(
             jpDformLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpDformLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(jpDformLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(tDokter, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
@@ -508,22 +677,22 @@ public class Adm_Tampil extends javax.swing.JFrame {
                 .addComponent(jpDtable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpDjudul, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpDform, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jLabel10.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jLabel10.setText("Lihat Data dan Update Appointment");
+        jLabel10.setText("Lihat Data Appointment");
 
         javax.swing.GroupLayout jpAjudulLayout = new javax.swing.GroupLayout(jpAjudul);
         jpAjudul.setLayout(jpAjudulLayout);
         jpAjudulLayout.setHorizontalGroup(
             jpAjudulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpAjudulLayout.createSequentialGroup()
-                .addGap(162, 162, 162)
+                .addGap(151, 151, 151)
                 .addComponent(jLabel10)
-                .addContainerGap(164, Short.MAX_VALUE))
+                .addContainerGap(175, Short.MAX_VALUE))
         );
         jpAjudulLayout.setVerticalGroup(
             jpAjudulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -533,106 +702,24 @@ public class Adm_Tampil extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTextField6.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
-            }
-        });
-
-        jLabel11.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel11.setText("Nama Pasien");
-
-        jLabel13.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel13.setText("Keluhan");
-
-        jLabel12.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel12.setText("Nama Dokter");
-
-        jTextField4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
-            }
-        });
-
-        jTextField5.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jpAformLayout = new javax.swing.GroupLayout(jpAform);
-        jpAform.setLayout(jpAformLayout);
-        jpAformLayout.setHorizontalGroup(
-            jpAformLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpAformLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jpAformLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel12))
-                .addGap(23, 23, 23)
-                .addGroup(jpAformLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField4)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                .addComponent(jLabel13)
-                .addGap(26, 26, 26)
-                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
-        );
-        jpAformLayout.setVerticalGroup(
-            jpAformLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpAformLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jpAformLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel13)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jpAformLayout.createSequentialGroup()
-                        .addGroup(jpAformLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11))
-                        .addGap(18, 18, 18)
-                        .addGroup(jpAformLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel12))))
-                .addContainerGap(23, Short.MAX_VALUE))
-        );
-
         tAppointment.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         tAppointment.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Id Dokter", "No Pasien", "Nama Pasien", "Nama Dokter", "Keluhan"
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, true, false, true
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane2.setViewportView(tAppointment);
+        ));
+        tAppoint.setViewportView(tAppointment);
 
         javax.swing.GroupLayout jpAtableLayout = new javax.swing.GroupLayout(jpAtable);
         jpAtable.setLayout(jpAtableLayout);
@@ -640,14 +727,14 @@ public class Adm_Tampil extends javax.swing.JFrame {
             jpAtableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpAtableLayout.createSequentialGroup()
                 .addContainerGap(43, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 682, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tAppoint, javax.swing.GroupLayout.PREFERRED_SIZE, 682, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36))
         );
         jpAtableLayout.setVerticalGroup(
             jpAtableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpAtableLayout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tAppoint, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(51, Short.MAX_VALUE))
         );
 
@@ -656,29 +743,23 @@ public class Adm_Tampil extends javax.swing.JFrame {
         jpAppointmentLayout.setHorizontalGroup(
             jpAppointmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpAppointmentLayout.createSequentialGroup()
+                .addContainerGap(25, Short.MAX_VALUE)
                 .addGroup(jpAppointmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpAppointmentLayout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jpAform, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jpAppointmentLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jpAtable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(24, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpAppointmentLayout.createSequentialGroup()
-                .addGap(0, 141, Short.MAX_VALUE)
-                .addComponent(jpAjudul, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(77, 77, 77))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpAppointmentLayout.createSequentialGroup()
+                        .addComponent(jpAtable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpAppointmentLayout.createSequentialGroup()
+                        .addComponent(jpAjudul, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(138, 138, 138))))
         );
         jpAppointmentLayout.setVerticalGroup(
             jpAppointmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpAppointmentLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(48, 48, 48)
                 .addComponent(jpAjudul, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpAform, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(33, 33, 33)
                 .addComponent(jpAtable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -769,8 +850,8 @@ public class Adm_Tampil extends javax.swing.JFrame {
         jpDtable.setVisible(false);
         jpAppointment.setVisible(false);
         jpAjudul.setVisible(false);
-        jpAform.setVisible(false);
         jpAtable.setVisible(false);
+        TampilDataPasien();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -785,8 +866,8 @@ public class Adm_Tampil extends javax.swing.JFrame {
         jpDtable.setVisible(true);
         jpAppointment.setVisible(false);
         jpAjudul.setVisible(false);
-        jpAform.setVisible(false);
         jpAtable.setVisible(false);
+        TampilDataDokter();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -801,8 +882,8 @@ public class Adm_Tampil extends javax.swing.JFrame {
         jpDtable.setVisible(false);
         jpAppointment.setVisible(true);
         jpAjudul.setVisible(true);
-        jpAform.setVisible(true);
         jpAtable.setVisible(true);
+        TampilDataAppointment();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -810,37 +891,130 @@ public class Adm_Tampil extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
+    private void jtiddokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtiddokActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField9ActionPerformed
+    }//GEN-LAST:event_jtiddokActionPerformed
 
-    private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed
+    private void jtnadokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtnadokActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField10ActionPerformed
+    }//GEN-LAST:event_jtnadokActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void jtuspassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtuspassActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_jtuspassActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void jtnapassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtnapassActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_jtnapassActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jtnopassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtnopassActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jtnopassActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void jbDsubbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDsubbActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+        // Tombol SUBBMIT DOKTER
+        
+        try{
+            String sql="INSERT INTO dokter VALUES ('" + jtiddok.getText()+"',"
+                    + "'" + jtnadok.getText()+"',"
+                    + "'" + jcjkdok.getSelectedItem() +"',"
+                    + "'" +jtjbdok.getText()+"')";
+            System.out.println(sql);
+            java.sql.Connection conn=(Connection)Koneksi.configDB();
+            java.sql.PreparedStatement pstm=conn.prepareStatement(sql);
+            pstm.execute();
+            JOptionPane.showMessageDialog(null, "Insert data berhasil");
+            TampilDataDokter();
+            KosongFormdok();
+            
+        }catch (HeadlessException | SQLException e){
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }//GEN-LAST:event_jbDsubbActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void jtjbdokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtjbdokActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_jtjbdokActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void tPasienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tPasienMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+        // Klik di TABEL PASIEN
+        
+        jtnopass.setEditable(false);
+        
+        int baris=tPasien.rowAtPoint(evt.getPoint());
+        String no=tPasien.getValueAt(baris,1).toString();
+        jtnopass.setText(no);
+        String nama=tPasien.getValueAt(baris,2).toString();
+        jtnapass.setText(nama);
+        String jk=tPasien.getValueAt(baris,4).toString();
+        jcjkpass.setSelectedItem(jk);
+        String usia=tPasien.getValueAt(baris,3).toString();
+        jtuspass.setText(usia);
+    }//GEN-LAST:event_tPasienMouseClicked
+
+    private void jbPuppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPuppActionPerformed
+        // TODO add your handling code here:
+        // Tombol UPDATE PASIEN
+        
+        try{
+            String sql="UPDATE pasien SET noPasien='" + jtnopass.getText()+"',"
+                    + "namaPasien='" + jtnapass.getText()+"',"
+                    + "usiaPasien='" +jtuspass.getText()+"',"
+                    + "jenisKelamin ='" + jcjkpass.getSelectedItem() + "' WHERE noPasien='"+jtnopass.getText()+"'";
+            System.out.println(sql);
+            java.sql.Connection conn=(Connection)Koneksi.configDB();
+            java.sql.PreparedStatement pstm=conn.prepareStatement(sql);
+            pstm.execute();
+            JOptionPane.showMessageDialog(null, "Update data berhasil");
+            TampilDataPasien();
+            KosongFormpass();
+            
+        }catch (HeadlessException | SQLException e){
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }//GEN-LAST:event_jbPuppActionPerformed
+
+    private void tDokter1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tDokter1MouseClicked
+        // TODO add your handling code here:
+        // Klik TABEL DOKTER
+        
+        jtiddok.setEditable(false);
+        
+        int baris=tDokter1.rowAtPoint(evt.getPoint());
+        String id=tDokter1.getValueAt(baris,0).toString();
+        jtiddok.setText(id);
+        String nama=tDokter1.getValueAt(baris,1).toString();
+        jtnadok.setText(nama);
+        String jk=tDokter1.getValueAt(baris,2).toString();
+        jcjkdok.setSelectedItem(jk);
+        String jam=tDokter1.getValueAt(baris,3).toString();
+        jtjbdok.setText(jam);
+    }//GEN-LAST:event_tDokter1MouseClicked
+
+    private void jbDuppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDuppActionPerformed
+        // TODO add your handling code here:
+        // Tombol UPDATE DOKTER
+        
+        try{
+            String sql="UPDATE dokter SET idDokter='" + jtiddok.getText()+"',"
+                    + "namaDokter='" + jtnadok.getText()+"',"
+                    + "jenisKelamin ='" + jcjkdok.getSelectedItem() +"',"
+                    + "jamBekerja='" +jtjbdok.getText()
+                    + "' WHERE idDokter='"+jtiddok.getText()+"'";
+            System.out.println(sql);
+            java.sql.Connection conn=(Connection)Koneksi.configDB();
+            java.sql.PreparedStatement pstm=conn.prepareStatement(sql);
+            pstm.execute();
+            JOptionPane.showMessageDialog(null, "Update data berhasil");
+            TampilDataDokter();
+            KosongFormdok();
+            
+        }catch (HeadlessException | SQLException e){
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }//GEN-LAST:event_jbDuppActionPerformed
 
     /**
      * @param args the command line arguments
@@ -880,16 +1054,12 @@ public class Adm_Tampil extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -901,19 +1071,13 @@ public class Adm_Tampil extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField9;
-    private javax.swing.JPanel jpAform;
+    private javax.swing.JButton jbDsubb;
+    private javax.swing.JButton jbDupp;
+    private javax.swing.JButton jbPupp;
+    private javax.swing.JComboBox<String> jcjkdok;
+    private javax.swing.JComboBox<String> jcjkpass;
     private javax.swing.JPanel jpAjudul;
     private javax.swing.JPanel jpAppointment;
     private javax.swing.JPanel jpAtable;
@@ -926,7 +1090,15 @@ public class Adm_Tampil extends javax.swing.JFrame {
     private javax.swing.JPanel jpPjudul;
     private javax.swing.JPanel jpPtable;
     private javax.swing.JPanel jp_button;
+    private javax.swing.JTextField jtiddok;
+    private javax.swing.JTextField jtjbdok;
+    private javax.swing.JTextField jtnadok;
+    private javax.swing.JTextField jtnapass;
+    private javax.swing.JTextField jtnopass;
+    private javax.swing.JTextField jtuspass;
+    private javax.swing.JScrollPane tAppoint;
     private javax.swing.JTable tAppointment;
+    private javax.swing.JScrollPane tDokter;
     private javax.swing.JTable tDokter1;
     private javax.swing.JTable tPasien;
     // End of variables declaration//GEN-END:variables
