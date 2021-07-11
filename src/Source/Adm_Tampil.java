@@ -38,7 +38,6 @@ public class Adm_Tampil extends javax.swing.JFrame {
     
     public void TampilDataPasien(){
         DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("No");
         model.addColumn("No Pasien");
         model.addColumn("Nama Pasien");
         model.addColumn("Usia Pasien");
@@ -61,8 +60,7 @@ public class Adm_Tampil extends javax.swing.JFrame {
                 res.getString(2),
                 res.getString(3),
                 res.getString(4),
-                res.getString(5),
-                res.getString(6)});
+                res.getString(5)});
             }
             tPasien.setModel(model);
         
