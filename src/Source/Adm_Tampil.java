@@ -102,8 +102,7 @@ public class Adm_Tampil extends javax.swing.JFrame {
     
     public void TampilDataAppointment(){
         DefaultTableModel model1 = new DefaultTableModel();
-        model1.addColumn("ID Dokter");
-        model1.addColumn("No Pasien");
+        
         model1.addColumn("Nama Dokter");
         model1.addColumn("Nama Pasien");
         model1.addColumn("Keluhan");
@@ -121,11 +120,9 @@ public class Adm_Tampil extends javax.swing.JFrame {
             
            while (res.next()){
            model1.addRow(new Object[]{
-               res.getString(1),
-                res.getString(2),
+               res.getString(2),
                 res.getString(3),
-                res.getString(4),
-                res.getString(5)});
+                res.getString(4)});
             }
             tAppointment.setModel(model1);        
         } catch(SQLException e){

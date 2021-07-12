@@ -151,7 +151,8 @@ public class Adm_Login extends javax.swing.JFrame {
 
     private void CancleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancleActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
+        new Dashboard().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_CancleActionPerformed
 
     private void jcAdmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcAdmActionPerformed
