@@ -10,8 +10,14 @@ import java.awt.HeadlessException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 public class Adm_Tampil extends javax.swing.JFrame {
 
@@ -120,9 +126,9 @@ public class Adm_Tampil extends javax.swing.JFrame {
             
            while (res.next()){
            model1.addRow(new Object[]{
-               res.getString(2),
-                res.getString(3),
-                res.getString(4)});
+               res.getString(1),
+                res.getString(2),
+                res.getString(3)});
             }
             tAppointment.setModel(model1);        
         } catch(SQLException e){
@@ -180,6 +186,7 @@ public class Adm_Tampil extends javax.swing.JFrame {
         jpPtable = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tPasien = new javax.swing.JTable();
+        jbPcet = new javax.swing.JButton();
         jpDokter = new javax.swing.JPanel();
         jpDjudul = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
@@ -192,9 +199,11 @@ public class Adm_Tampil extends javax.swing.JFrame {
         jbDsubb = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();
         jtjbdok = new javax.swing.JTextField();
+        jbDdel = new javax.swing.JButton();
         jpDform = new javax.swing.JPanel();
         tDokter = new javax.swing.JScrollPane();
         tDokter1 = new javax.swing.JTable();
+        jbDcet = new javax.swing.JButton();
         jpDtable = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jpAppointment = new javax.swing.JPanel();
@@ -203,6 +212,7 @@ public class Adm_Tampil extends javax.swing.JFrame {
         jpAtable = new javax.swing.JPanel();
         tAppoint = new javax.swing.JScrollPane();
         tAppointment = new javax.swing.JTable();
+        jbAcet = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -390,7 +400,7 @@ public class Adm_Tampil extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPformLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jbPupp)
-                .addGap(268, 268, 268))
+                .addGap(269, 269, 269))
         );
         jpPformLayout.setVerticalGroup(
             jpPformLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -407,9 +417,9 @@ public class Adm_Tampil extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(jLabel9)
                     .addComponent(jcjkpass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(jbPupp)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jpPtable.setBackground(new java.awt.Color(255, 255, 255));
@@ -435,21 +445,34 @@ public class Adm_Tampil extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tPasien);
 
+        jbPcet.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jbPcet.setText("Cetak");
+        jbPcet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbPcetActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpPtableLayout = new javax.swing.GroupLayout(jpPtable);
         jpPtable.setLayout(jpPtableLayout);
         jpPtableLayout.setHorizontalGroup(
             jpPtableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPtableLayout.createSequentialGroup()
-                .addContainerGap(55, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 646, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
+                .addContainerGap(56, Short.MAX_VALUE)
+                .addGroup(jpPtableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 646, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPtableLayout.createSequentialGroup()
+                        .addComponent(jbPcet)
+                        .addGap(33, 33, 33)))
+                .addGap(128, 128, 128))
         );
         jpPtableLayout.setVerticalGroup(
             jpPtableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpPtableLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jbPcet)
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jpPasienLayout = new javax.swing.GroupLayout(jpPasien);
@@ -461,7 +484,7 @@ public class Adm_Tampil extends javax.swing.JFrame {
                 .addGroup(jpPasienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jpPtable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jpPform, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 68, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPasienLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jpPjudul, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -535,6 +558,14 @@ public class Adm_Tampil extends javax.swing.JFrame {
             }
         });
 
+        jbDdel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jbDdel.setText("Delete");
+        jbDdel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbDdelActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpDjudulLayout = new javax.swing.GroupLayout(jpDjudul);
         jpDjudul.setLayout(jpDjudulLayout);
         jpDjudulLayout.setHorizontalGroup(
@@ -561,7 +592,10 @@ public class Adm_Tampil extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpDjudulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jcjkdok, 0, 249, Short.MAX_VALUE)
-                    .addComponent(jtjbdok))
+                    .addComponent(jtjbdok)
+                    .addGroup(jpDjudulLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jbDdel)))
                 .addContainerGap(49, Short.MAX_VALUE))
         );
         jpDjudulLayout.setVerticalGroup(
@@ -582,7 +616,8 @@ public class Adm_Tampil extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(jpDjudulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbDupp)
-                    .addComponent(jbDsubb))
+                    .addComponent(jbDsubb)
+                    .addComponent(jbDdel))
                 .addContainerGap())
         );
 
@@ -618,21 +653,36 @@ public class Adm_Tampil extends javax.swing.JFrame {
         });
         tDokter.setViewportView(tDokter1);
 
+        jbDcet.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jbDcet.setText("Cetak");
+        jbDcet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbDcetActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpDformLayout = new javax.swing.GroupLayout(jpDform);
         jpDform.setLayout(jpDformLayout);
         jpDformLayout.setHorizontalGroup(
             jpDformLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpDformLayout.createSequentialGroup()
+            .addGroup(jpDformLayout.createSequentialGroup()
                 .addContainerGap(88, Short.MAX_VALUE)
-                .addComponent(tDokter, javax.swing.GroupLayout.PREFERRED_SIZE, 646, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59))
+                .addGroup(jpDformLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpDformLayout.createSequentialGroup()
+                        .addComponent(tDokter, javax.swing.GroupLayout.PREFERRED_SIZE, 646, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(59, 59, 59))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpDformLayout.createSequentialGroup()
+                        .addComponent(jbDcet)
+                        .addGap(109, 109, 109))))
         );
         jpDformLayout.setVerticalGroup(
             jpDformLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpDformLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(tDokter, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jbDcet)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jpDtable.setBackground(new java.awt.Color(255, 255, 255));
@@ -696,9 +746,9 @@ public class Adm_Tampil extends javax.swing.JFrame {
         jpAjudulLayout.setHorizontalGroup(
             jpAjudulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpAjudulLayout.createSequentialGroup()
-                .addGap(151, 151, 151)
+                .addGap(154, 154, 154)
                 .addComponent(jLabel10)
-                .addContainerGap(175, Short.MAX_VALUE))
+                .addContainerGap(172, Short.MAX_VALUE))
         );
         jpAjudulLayout.setVerticalGroup(
             jpAjudulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -729,21 +779,35 @@ public class Adm_Tampil extends javax.swing.JFrame {
         ));
         tAppoint.setViewportView(tAppointment);
 
+        jbAcet.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jbAcet.setText("Cetak");
+        jbAcet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAcetActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpAtableLayout = new javax.swing.GroupLayout(jpAtable);
         jpAtable.setLayout(jpAtableLayout);
         jpAtableLayout.setHorizontalGroup(
             jpAtableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpAtableLayout.createSequentialGroup()
+            .addGroup(jpAtableLayout.createSequentialGroup()
                 .addContainerGap(43, Short.MAX_VALUE)
-                .addComponent(tAppoint, javax.swing.GroupLayout.PREFERRED_SIZE, 682, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36))
+                .addGroup(jpAtableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpAtableLayout.createSequentialGroup()
+                        .addComponent(tAppoint, javax.swing.GroupLayout.PREFERRED_SIZE, 682, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpAtableLayout.createSequentialGroup()
+                        .addComponent(jbAcet)
+                        .addGap(108, 108, 108))))
         );
         jpAtableLayout.setVerticalGroup(
             jpAtableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpAtableLayout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addComponent(tAppoint, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(jbAcet))
         );
 
         javax.swing.GroupLayout jpAppointmentLayout = new javax.swing.GroupLayout(jpAppointment);
@@ -751,14 +815,14 @@ public class Adm_Tampil extends javax.swing.JFrame {
         jpAppointmentLayout.setHorizontalGroup(
             jpAppointmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpAppointmentLayout.createSequentialGroup()
-                .addContainerGap(25, Short.MAX_VALUE)
+                .addContainerGap(48, Short.MAX_VALUE)
                 .addGroup(jpAppointmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpAppointmentLayout.createSequentialGroup()
                         .addComponent(jpAtable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpAppointmentLayout.createSequentialGroup()
                         .addComponent(jpAjudul, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(138, 138, 138))))
+                        .addGap(161, 161, 161))))
         );
         jpAppointmentLayout.setVerticalGroup(
             jpAppointmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -785,9 +849,9 @@ public class Adm_Tampil extends javax.swing.JFrame {
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(0, 20, Short.MAX_VALUE)
+                    .addGap(0, 68, Short.MAX_VALUE)
                     .addComponent(jpAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 21, Short.MAX_VALUE)))
+                    .addGap(0, 69, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -993,6 +1057,68 @@ public class Adm_Tampil extends javax.swing.JFrame {
         TampilDataPasien();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jbPcetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPcetActionPerformed
+        // TODO add your handling code here:
+        try {
+            InputStream is = Adm_Tampil.class.getResourceAsStream("/Laporan/Pasien.jasper");
+            JasperPrint jsPrint = JasperFillManager.fillReport(is, null, Koneksi.configDB());
+            JasperViewer.viewReport(jsPrint, false);
+            
+        } catch (JRException e) {
+             JOptionPane.showMessageDialog(null, "gagal mencetak laporan karena : "
+                     + e.getMessage(), "cetak laporan", JOptionPane.ERROR_MESSAGE);
+        } catch (SQLException ex) {
+            Logger.getLogger(Adm_Tampil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jbPcetActionPerformed
+
+    private void jbDdelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDdelActionPerformed
+        // TODO add your handling code here:
+        try{
+            String sql="DELETE FROM dokter WHERE idDokter='" + jtiddok.getText() +"'";
+            
+            java.sql.Connection conn=(Connection)Koneksi.configDB();
+            java.sql.PreparedStatement pstm=conn.prepareStatement(sql);
+            pstm.execute();
+            JOptionPane.showMessageDialog(null, "Hapus data berhasil");
+            TampilDataDokter();
+            KosongFormdok();
+            
+        }catch (HeadlessException | SQLException e){
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }//GEN-LAST:event_jbDdelActionPerformed
+
+    private void jbDcetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDcetActionPerformed
+        // TODO add your handling code here:
+        try {
+            InputStream is = Adm_Tampil.class.getResourceAsStream("/Laporan/Dokter.jasper");
+            JasperPrint jsPrint = JasperFillManager.fillReport(is, null, Koneksi.configDB());
+            JasperViewer.viewReport(jsPrint, false);
+            
+        } catch (JRException e) {
+             JOptionPane.showMessageDialog(null, "gagal mencetak laporan karena : "
+                     + e.getMessage(), "cetak laporan", JOptionPane.ERROR_MESSAGE);
+        } catch (SQLException ex) {
+            Logger.getLogger(Adm_Tampil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jbDcetActionPerformed
+
+    private void jbAcetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAcetActionPerformed
+        // TODO add your handling code here:
+        try {
+            InputStream is = Adm_Tampil.class.getResourceAsStream("/Laporan/Appointment.jasper");
+            JasperPrint jsPrint = JasperFillManager.fillReport(is, null, Koneksi.configDB());
+            JasperViewer.viewReport(jsPrint, false);
+            
+        } catch (JRException e) {
+             JOptionPane.showMessageDialog(null, "gagal mencetak laporan karena : "
+                     + e.getMessage(), "cetak laporan", JOptionPane.ERROR_MESSAGE);
+        } catch (SQLException ex) {
+            Logger.getLogger(Adm_Tampil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jbAcetActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1050,8 +1176,12 @@ public class Adm_Tampil extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JButton jbAcet;
+    private javax.swing.JButton jbDcet;
+    private javax.swing.JButton jbDdel;
     private javax.swing.JButton jbDsubb;
     private javax.swing.JButton jbDupp;
+    private javax.swing.JButton jbPcet;
     private javax.swing.JButton jbPupp;
     private javax.swing.JComboBox<String> jcjkdok;
     private javax.swing.JComboBox<String> jcjkpass;
