@@ -131,22 +131,6 @@ ALTER TABLE `dokter`
 --
 ALTER TABLE `pasien`
   ADD PRIMARY KEY (`noPasien`);
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `appointment`
---
-ALTER TABLE `appointment`
-  ADD CONSTRAINT `appointment_ibfk_1` FOREIGN KEY (`idDokter`) REFERENCES `dokter` (`idDokter`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `pasien`
---
-ALTER TABLE `pasien`
-  ADD CONSTRAINT `pasien_ibfk_1` FOREIGN KEY (`noPasien`) REFERENCES `appointment` (`noPasien`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

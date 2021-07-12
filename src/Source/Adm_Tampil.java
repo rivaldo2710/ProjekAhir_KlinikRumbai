@@ -932,13 +932,13 @@ public class Adm_Tampil extends javax.swing.JFrame {
         jtnopass.setEditable(false);
         
         int baris=tPasien.rowAtPoint(evt.getPoint());
-        String no=tPasien.getValueAt(baris,1).toString();
+        String no=tPasien.getValueAt(baris,0).toString();
         jtnopass.setText(no);
-        String nama=tPasien.getValueAt(baris,2).toString();
+        String nama=tPasien.getValueAt(baris,1).toString();
         jtnapass.setText(nama);
-        String jk=tPasien.getValueAt(baris,4).toString();
+        String jk=tPasien.getValueAt(baris,3).toString();
         jcjkpass.setSelectedItem(jk);
-        String usia=tPasien.getValueAt(baris,3).toString();
+        String usia=tPasien.getValueAt(baris,2).toString();
         jtuspass.setText(usia);
     }//GEN-LAST:event_tPasienMouseClicked
 
